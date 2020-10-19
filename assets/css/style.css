@@ -1,0 +1,44 @@
+#index-page {
+    margin: 0;
+    padding: 0;
+    background-color: #ff9d2d;
+}
+
+.container {
+    padding: 0;
+}
+
+.containerButton {
+    margin-top: 40vh;
+    width: 10vw;
+}
+
+.button {
+    margin-top: 30px;
+    height: 100px;
+    width: 100px;
+    border-radius: 30px;
+}
+.fas {
+    font-size: 50px;
+    color: #ff9d2d;
+}
+
+/* Game Page */
+
+#chessboard {
+    width: 80%;
+    height: 800px;
+    background-color: red;
+}
+
+.chessSquare {
+    margin-right: -6px;
+    padding: 0;
+    display: inline-block;
+    width: 9.5%;
+    height: 9.5%;
+    border: solid #000;
+    border-width: 1%;
+    background-color: papayawhip;
+}
