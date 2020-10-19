@@ -33,6 +33,8 @@ body {
     color: #ff9d2d;
 }
 
+
+
 /* Game Page */
 
 #board {
@@ -67,4 +69,36 @@ body {
 
 .squaredark {
     background-color: rgb(107, 105, 105);
+}
+
+.selector {
+    height: 95%;
+    width: 100%;
+    background-color: transparent;
+    border-style: none;
+    padding: 0;
+    position: relative;
+}
+
+.selector:focus {
+    outline: 4px solid rgb(255, 182, 134);
+    position: relative;
+    z-index: 1;
+}
+
+.squareTempValue {
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+
+/* Pawn Pieces */
+
+.pawnPiece {
+    z-index: 10;
+    height: 100%;
+    width: 100%;
 }
