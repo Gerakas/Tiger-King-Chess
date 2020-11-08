@@ -1,4 +1,4 @@
-/* Landing Page */
+/* ---------------------------------------- Landing Page ------------------------------------------*/
 
 body {
     margin: 0;
@@ -28,14 +28,15 @@ body {
     width: 100px;
     border-radius: 30px;
 }
-.fas {
+.landingPageButton {
     font-size: 50px;
     color: #ff9d2d;
 }
 
 
 
-/* Game Page */
+/* -------------------------------------------- Game Page -------------------------------------------- */
+
 
 #board {
     position: relative;
@@ -58,47 +59,38 @@ body {
     display: flex;
 }
 
-.square {
+.tile {
     height: 100%;
     width: 12.5%;
+    text-align: center;
 }
 
-.squarelight {
-    background-color: rgb(250, 229, 210);
+.tileLight {
+    background-color: rgb(255, 123, 35);
 }
 
-.squaredark {
-    background-color: rgb(107, 105, 105);
+.tileDark {
+    background-color: rgb(80, 80, 80);
 }
 
-.selector {
-    height: 95%;
-    width: 100%;
-    background-color: transparent;
-    border-style: none;
-    padding: 0;
-    position: relative;
-}
-
-.selector:focus {
+.tileSelected {
     outline: 4px solid rgb(255, 182, 134);
     position: relative;
     z-index: 1;
 }
 
-.squareTempValue {
-    margin: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
+
+/* -------------------------------------------- Pawn Pieces --------------------------------------------*/
+
+
+.darkPiece {
+    color: black;
+    font-size: 60px;
+    margin-top: 5px;
 }
 
-
-
-/* Pawn Pieces */
-
-.pawnPiece {
-    z-index: 10;
-    height: 100%;
-    width: 100%;
+.lightPiece {
+    color: white;
+    font-size: 60px;
+    margin-top: 5px;
 }
