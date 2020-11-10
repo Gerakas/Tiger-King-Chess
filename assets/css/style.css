@@ -87,7 +87,10 @@ body {
 }
 
 .potentialTileMovement {
-    background-color: red;
+    background-color: rgba(32, 178, 245, 0.5);
+    outline: 4px solid rgb(49, 142, 248);
+    position: relative;
+    z-index: 1;
 }
 
 
