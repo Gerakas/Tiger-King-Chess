@@ -10,7 +10,6 @@ $(document).ready(function() {
 
     const tileValues = Object.values(tiles);
 
-
     $(".chess-piece").click(function() {
 
         // The event handler that retrieves the ID of the tile containing 
@@ -18,36 +17,48 @@ $(document).ready(function() {
         let parentTile = $(this).parent().attr("id");
         //console.log(parentTile);
 
-        // The loop that iterates through the tileValue object and compares
-        // it's values with the tile's ID that the clicked pawn piece is placed on.
+        // Highlights the tile the pawn piece is on.
+        $(this).parent().toggleClass("tileSelected");
+
+        // The loop that iterates through the tiles keys and compares
+        // them with the tile's ID that the clicked pawn piece is placed on.
         for (let anyTile in tiles) {
 
-
             if (anyTile == parentTile) {
-                // console.log("it works!")
-                
-                // Highlights the tile the pawn piece is on.
-                $(this).parent().toggleClass("tileSelected");
 
-                // Gets x and y values of tile the clicked pawn is on.
+                // Gets x and y values of the tile the clicked pawn is on.
                 let currentTileValues = tiles[anyTile];
                 
-                // Calculates x and y co-ordinates of potential tiles the pawn
-                // piece is allowed to move to.
+                // Calculates x and y co-ordinates of potential tiles the pawn piece is allowed to move to.
                 let potentialMoves = {
                     valueX: currentTileValues.valueX,
                     valueY: currentTileValues.valueY - 1,
                 }
-                // console.log(potentialMoves);
-                
-                for (i=0; i < tileValues.length; i++) {
-                    console.log(tileValues[i]);
 
-                    if (tileValues[i] == potentialMoves) {
-                        alert("Got it");
+
+                // The loop that iterates through the tileValues and compares
+                // the values with the potentialMoves the pawn can make.
+                for (i = 0; i < tileValues.length; i++) {
+                
+                    if (potentialMoves.valueX == tileValues[i].valueX && potentialMoves.valueY == tileValues[i].valueY) {
+                        console.log(tileValues[i]); 
+
+                        // This function, that finds an objects property through its values was provided by
+                        // https://www.geeksforgeeks.org/how-to-get-a-key-in-a-javascript-object-by-its-value/
+                        function getKeyByValue(object, value) { 
+                            for (var prop in object) { 
+                                if (object.hasOwnProperty(prop)) { 
+                                    if (object[prop] === value) 
+                                    return prop; 
+                                } 
+                            } 
+                        } 
+                
+                        let tileProperty = getKeyByValue(tiles, tileValues[i]); 
                         
+                        $(`#${tileProperty}`).addClass("potentialTileMovement");
                     }
-            
+
                 }
 
 

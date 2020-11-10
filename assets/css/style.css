@@ -86,6 +86,10 @@ body {
     z-index: 1;
 }
 
+.potentialTileMovement {
+    background-color: red;
+}
+
 
 /* -------------------------------------------- Pawn Pieces --------------------------------------------*/
 
