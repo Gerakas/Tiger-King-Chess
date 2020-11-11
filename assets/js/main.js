@@ -27,6 +27,14 @@ $(document).ready(function() {
         C3 : { valueX : 3, valueY : 3 },
         C2 : { valueX : 3, valueY : 2 },
         C1 : { valueX : 3, valueY : 1 },
+        D8 : { valueX : 4, valueY : 8 },
+        D7 : { valueX : 4, valueY : 7 },
+        D6 : { valueX : 4, valueY : 6 },
+        D5 : { valueX : 4, valueY : 5 },
+        D4 : { valueX : 4, valueY : 4 },
+        D3 : { valueX : 4, valueY : 3 },
+        D2 : { valueX : 4, valueY : 2 },
+        D1 : { valueX : 4, valueY : 1 },
 
     };
 
@@ -34,8 +42,7 @@ $(document).ready(function() {
 
     $(".chess-piece").click(function() {
 
-        $("div").removeClass("tileSelected");
-        $("div").removeClass("potentialTileMovement");
+        const currentChessPiece = $(this);
 
 
         // The event handler that retrieves the ID of the tile containing the clicked chess piece.
@@ -52,7 +59,7 @@ $(document).ready(function() {
                 // Gets x and y values of the tile the clicked pawn is on.
                 let currentTileValues = tiles[anyTile];
 
-                // Checks for type of pawn piece
+                // Checks for type of pawn piece is Pawn
                 if ($(this).hasClass("fa-chess-pawn")) {
 
                     // Calculates x and y co-ordinates of potential tiles the pawn piece is allowed to move to.
@@ -67,7 +74,7 @@ $(document).ready(function() {
                     for (i = 0; i < tileValues.length; i++) {
                     
                         if (potentialMoves.valueX == tileValues[i].valueX && potentialMoves.valueY == tileValues[i].valueY) {
-                            console.log(tileValues[i]); 
+                            // console.log(tileValues[i]); 
 
                             // This function, that finds an objects property through its values was provided by
                             // https://www.geeksforgeeks.org/how-to-get-a-key-in-a-javascript-object-by-its-value/
@@ -80,14 +87,77 @@ $(document).ready(function() {
                                 } 
                             } 
                     
-                            let tileProperty = getPropByValue(tiles, tileValues[i]); 
+                            let tileProperty = getPropByValue(tiles, tileValues[i]);
                             
                             $(`#${tileProperty}`).addClass("potentialTileMovement");
+
+                            $(`#${tileProperty}`).click(function() {
+                                $(currentChessPiece).appendTo(this);
+
+                                $("div").removeClass("tileSelected");
+                                $("div").removeClass("potentialTileMovement");
+                            });
+
                         }
 
                     }
                 
                 } 
+
+                // Checks for type of pawn piece is Knight
+                else if ($(this).hasClass("fa-chess-knight")) {
+
+                    // Calculates x and y co-ordinates of potential tiles the pawn piece is allowed to move to.
+                    let potentialMoves = {
+                        move1 : {valueX: currentTileValues.valueX + 1, valueY: currentTileValues.valueY - 2},
+                        move2 : {valueX: currentTileValues.valueX - 1, valueY: currentTileValues.valueY - 2},
+                        move3 : {valueX: currentTileValues.valueX + 2, valueY: currentTileValues.valueY - 1},
+                        move4 : {valueX: currentTileValues.valueX - 2, valueY: currentTileValues.valueY - 1},
+                        move5 : {valueX: currentTileValues.valueX + 1, valueY: currentTileValues.valueY + 2},
+                        move6 : {valueX: currentTileValues.valueX - 1, valueY: currentTileValues.valueY + 2},
+                        move7 : {valueX: currentTileValues.valueX + 2, valueY: currentTileValues.valueY + 1},
+                        move8 : {valueX: currentTileValues.valueX - 2, valueY: currentTileValues.valueY + 1}
+                    }
+
+                    let numOfPotentialMoves = Object.values(potentialMoves);
+                
+
+                    // The loop that iterates through the tileValues and compares
+                    // the values with the potentialMoves the pawn can make.
+                    for (i = 0; i < tileValues.length; i++) {
+                        
+                        for (knightMoves = 0; knightMoves < numOfPotentialMoves.length; knightMoves++) {
+
+                    
+                            if (numOfPotentialMoves[knightMoves].valueX == tileValues[i].valueX && numOfPotentialMoves[knightMoves].valueY == tileValues[i].valueY) {
+
+                                // This function, that finds an objects property through its values was provided by
+                                // https://www.geeksforgeeks.org/how-to-get-a-key-in-a-javascript-object-by-its-value/
+                                function getPropByValue(object, value) { 
+                                    for (var prop in object) { 
+                                        if (object.hasOwnProperty(prop)) { 
+                                            if (object[prop] === value) 
+                                            return prop; 
+                                        } 
+                                    } 
+                                } 
+                        
+                                let tileProperty = getPropByValue(tiles, tileValues[i]); 
+                                
+                                $(`#${tileProperty}`).addClass("potentialTileMovement");
+
+                                $(`#${tileProperty}`).click(function() {
+                                    $(currentChessPiece).appendTo(this);
+
+                                    
+                                });
+                            }
+                        }
+
+                    }
+                
+                } 
+                
 
             } else {
                 continue;
